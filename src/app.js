@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 //conectando db
-mongoose.connect('mongodb://localhost/crud-mongo')
+mongoose.connect('mongodb+srv://admin:root@cluster0-ezgev.mongodb.net/test?retryWrites=true&w=majority')
 .then(db => console.log('DB conectada'))
 .catch(err => console.log(err));
 
@@ -26,7 +26,6 @@ app.use(express.urlencoded({exnteded: false}));
 app.use('/', indexRoutes);
 
 //Iniciando servidor
-
 
 
 app.listen(3000, () => {
