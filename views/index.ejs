@@ -1,0 +1,88 @@
+<%  include partials/_header  %>
+
+
+   <div class="container">
+       <div class="row">
+<!--FORM-->
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/add" method="POST">
+                        <div class="form-group">              
+                            <select type="text" name="sistema" placeholder="Sistema Operativo" class="form-control">
+                                    <option value="Windows">Microsoft Windows</option>
+                                    <option value="Linux">Distro de Linux</option>
+                                    <option value="MacOS">MacOS</option>
+                                    <option value="Otro">Otro</option>
+                                  </select>
+                        </div>
+                        <div class="form-group">
+                            <select type="text" name="lenguaje" placeholder="Lenguaje de programacion" class="form-control">
+                                    <option value="C">C</option>
+                                    <option value="C++">C++</option>
+                                    <option value="C#">C#</option>
+                                    <option value="Java">Java</option>
+                                    <option value="JavaScript">JavaScript</option>
+                                    <option value="Python">Python</option>
+                                    <option value="Ruby">Ruby</option>
+                                    <option value="Otro">Otro</option>
+                                  </select>
+                        </div>
+                        <div class="form-group">
+                                <select type="text" name="tipo" placeholder="Tipo" class="form-control">
+                                        <option value="Nativa">Nativa</option>
+                                        <option value="Hibrida">Hibrida</option>
+                                        <option value="Multiplataforma">Multiplataforma</option>
+                                      </select>
+                            </div>
+                        <div class="form-group">
+                                <input type="text" name="nombre" placeholder="Nombre" class="form-control">                 
+                            </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                                Añadir
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+<!--LIST-->
+        <div class="col-md-7">
+<table class="table table-bordered table-hover">
+<thead>
+    <tr>
+ 
+        <th>OS</th>
+        <th>Lenguaje de programacion</th>
+        <th>Tipo</th>
+        <th>Nombre</th>
+        <th>Accion</th>
+
+    </tr>
+</thead>
+<tbody>
+        <% for (var i = 0; i< tasks.length; i++) { %>
+            <tr>
+
+                <td><%= tasks[i].sistema %></td>
+                <td><%= tasks[i].lenguaje %></td>
+                <td><%= tasks[i].tipo %></td>
+                <td><%= tasks[i].nombre %></td>
+                
+                
+                <td>
+                    <a href="/convertir/<%= tasks[i]._id %>"
+                         class="btn <%= tasks[i].status ? 
+                         'btn-success' : 'btn-dark' %> ">Hecho</a>
+                    <a href="/delete/<%= tasks[i]._id %>" class="btn btn-danger">ELiminar</a>
+                    <a href="/edit/<%= tasks[i]._id %>" class="btn btn-info">Editar</a>
+                </td>
+            </tr>
+            <% } %>
+</tbody>
+</table>
+        </div>
+   </div>
+   </div>
+
+   <%  include partials/_footer  %>
+   
